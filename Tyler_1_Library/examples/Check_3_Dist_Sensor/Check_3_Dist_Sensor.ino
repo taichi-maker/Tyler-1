@@ -26,7 +26,7 @@ results will be displayed in Arduino IDE's Serial Monitor.
 
 #include "Tyler_1.h"
 
-Tyler_1 tyler_1(1, 0, 1, 0, 200, A0, A1, 10);      // 建立太乐1号对象
+Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10);      // 建立太乐1号对象
 
 void setup() {
   Serial.begin (9600);

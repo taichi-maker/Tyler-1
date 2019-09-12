@@ -22,7 +22,7 @@
 
 //Servo myservo;
 
-Tyler_1 tyler_1(1, 0, 1, 0, 200, A0, A1, 10);      // 建立太乐1号对象trigPin-A0, echoPin-A1
+Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10);      // 建立太乐1号对象trigPin-A0, echoPin-A1
 
 void setup() {
   Serial.begin(9600);
