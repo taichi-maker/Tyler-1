@@ -39,11 +39,11 @@
 
 // 建立太乐1号对象。其中对象参数分别是：
 // (车轮电机1运转方向, 车轮电机2运转方向, 车轮电机3运转方向, 车轮电机4运转方向,
-// 车轮电机运转速度，测距传感器trip引脚， 测距传感器echo引脚，头部舵机信号引脚 )
-Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10);   
+// 车轮电机运转速度，测距传感器TRIG引脚， 测距传感器ECHO引脚，头部舵机信号引脚 )
+Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10); 
                                                                                                
-//软件串口启动
-SoftwareSerial softSerial(9, 10);      // RX, TX
+// 建立SoftwareSerial对象，HC-06的TX接Arduino引脚9（AFMOTOR SERVO-2引脚）
+SoftwareSerial softSerial(9, 2);    
 
 char cmdChar = '5';             // 存放串口控制指令字符
 char cmdCharSave = cmdChar;     // 串口控制指令缓存

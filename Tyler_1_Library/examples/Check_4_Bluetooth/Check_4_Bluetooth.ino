@@ -20,19 +20,14 @@
  
 #include <SoftwareSerial.h>
 
-// 建立SoftwareSerial对象，HC-06的TX接Arduino引脚9（HC-06的RX可悬空）
-SoftwareSerial BTserial(9, 10); 
+// 建立SoftwareSerial对象，HC-06的TX接Arduino引脚9（AFMOTOR SERVO-2引脚）
+SoftwareSerial BTserial(9, 2); 
  
 void setup() {
   Serial.begin(9600);
   BTserial.begin(9600);   // HC-06 默认波特率 9600
  
-  Serial.print("Tyler-1 HC-06 TEST");
-  
-  BTserial.print("AT");   //可在此处输入设置HC-06蓝牙模块的AT指令。
-                          //此AT指令须在HC-06未连接蓝牙状态输入。
- 
-  pinMode(11, OUTPUT);                        
+  Serial.print("Tyler-1 HC-06 TEST");                     
  
 }
  
@@ -42,11 +37,6 @@ void loop(){
     if( BTserial.available()>0 ){            //如果软件串口有HC-06发来的数据
       char BTserialData =  BTserial.read();  //将软件串口中的数据赋值给变量BTserialData
       Serial.print( BTserialData );          //通过硬件串口监视器显示HC-06发来的数据
-      if (BTserialData == '1') {             //判断HC-06发来的数据是否是字符1
-        digitalWrite(11, HIGH);              //如果是字符1，则点亮LED
-      } else if (BTserialData == '0') {      //如果不是字符0
-        digitalWrite(11, LOW);               //则熄灭LED
-      }
     }
  
     // 将用户通过串口监视器输入的数据发送给HC-06

@@ -26,7 +26,10 @@ results will be displayed in Arduino IDE's Serial Monitor.
 
 #include "Tyler_1.h"
 
-Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10);      // 建立太乐1号对象
+// 建立太乐1号对象。其中对象参数分别是：
+// (车轮电机1运转方向, 车轮电机2运转方向, 车轮电机3运转方向, 车轮电机4运转方向,
+// 车轮电机运转速度，测距传感器TRIG引脚， 测距传感器ECHO引脚，头部舵机信号引脚 )
+Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10);     
 
 void setup() {
   Serial.begin (9600);
