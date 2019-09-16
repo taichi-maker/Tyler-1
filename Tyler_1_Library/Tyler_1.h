@@ -65,14 +65,14 @@ class Tyler_1{
     Servo headServo;     	// 建立头部舵机对象
     int headServoPin;     	// 舵机控制引脚
     
-    byte dcMotor1Forward;		// 车轮电机1正转
-    byte dcMotor1Backward;
-    byte dcMotor2Forward;
-    byte dcMotor2Backward;
-    byte dcMotor3Forward;
-    byte dcMotor3Backward;
-    byte dcMotor4Forward;
-    byte dcMotor4Backward;    
+    byte dcMotor1Forward;		// 车轮电机1正转参数
+    byte dcMotor1Backward;		// 车轮电机1反转参数
+    byte dcMotor2Forward;		// 车轮电机2正转参数
+    byte dcMotor2Backward;		// 车轮电机2反转参数
+    byte dcMotor3Forward;		// 车轮电机3正转参数
+    byte dcMotor3Backward;		// 车轮电机3反转参数
+    byte dcMotor4Forward;		// 车轮电机4正转参数
+    byte dcMotor4Backward; 		// 车轮电机4反转参数   
 
     int hcTrig;  // 超声测距传感器Trig引脚
     int hcEcho;  // 超声测距传感器Echo引脚
