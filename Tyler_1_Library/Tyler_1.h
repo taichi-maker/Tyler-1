@@ -6,12 +6,21 @@
 日期/Date（YYYYMMDD）     : 20190719
 程序目的/Purpose          : 
 太乐1号是基于Arduino与乐高积木的创客智能模型车。该智能模型车旨在帮助创客朋友学习熟悉Arduino编程，
-尤其是通过面向对象的方式开发Arduino。 
+
+以下链接是太乐一号的视频介绍:
+https://www.bilibili.com/video/av66919153/
+
+太乐一号的制作十分简单。您无需粘接，无需焊接，而只需要插接乐高积木并且使用螺丝刀紧固元件即可完成这个可爱的智能小车搭建。如需获取更多太乐一号信息（包括搭建，调试，开发等），请访问太极创客网站中太乐一号专门页面：http://www.taichi-maker.com/homepage/arduino-tutorial-index/arduino-hardware/#taile1
+
+由于是基于乐高积木的创客项目，您可以发挥无穷的想象力，改变太乐一号智能小车外形，添加更多传感器，编写您自己的控制程序，定制专属您的太乐一号。总之，太乐一号是一个充满无限拓展空间的创客机器人项目。
+
+假如您还不知道什么是Arduino或者对Arduino编程不熟悉，不用担心。太极创客团队编制的完全免费开源教程视频教程《零基础入门学用Arduino》帮助很多朋友入门学会使用和开发Arduino。《零基础入门学用Arduino》链接：http://www.taichi-maker.com/homepage/arduino-basic-tutorial-index/
+
 -----------------------------------------------------------------------
 修订历史/Revision History  
 日期/Date    作者/Author      参考号/Ref    修订说明/Revision Description
 20190821	   CYNO朔			0.1			增加左后右后控制	
-
+20190917	   CYNO朔			0.2			增加了更详细的项目说明	
 ***********************************************************************/
 
 #ifndef TYLER_1_H_
