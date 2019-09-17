@@ -33,7 +33,7 @@
 #define AUTO 1            // 自动模式
 #define GEST 2            // 体感模式
 
-#define TURN_LEFT_90   800        // 左转90度延迟参数
+#define TURN_LEFT_90   900        // 左转90度延迟参数
 #define TURN_RIGHT_90   1000      // 右转90度延迟参数
 #define TURN_BACK   1600          // 掉头延迟参数
 
