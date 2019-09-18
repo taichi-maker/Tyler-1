@@ -14,6 +14,9 @@ https://www.bilibili.com/video/av66919153/
 
 https://gitee.com/taijichuangke/Tyler-1/wikis/%E5%A4%AA%E4%B9%901%E5%8F%B7%20Tyler-1
 
+# 请留意:
+太乐一号库依赖Adafruit开发的AFMotor库，因此您需要预先将AFMotor库安装到Arduino IDE后方可使用太乐一号库。您可以在太乐一号项目仓库的res目录中找到AFMotor库源码。
+
 基本说明
 --------
 太乐一号的制作十分简单。您无需粘接，无需焊接，而只需要插接乐高积木并且使用螺丝刀紧固元件即可完成这个可爱的智能小车搭建。如需获取更多太乐一号搭建信息，请访问太极创客网站中太乐一号专门页面：http://www.taichi-maker.com/homepage/arduino-tutorial-index/arduino-hardware/#taile1
