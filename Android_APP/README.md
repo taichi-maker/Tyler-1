@@ -4,7 +4,7 @@
 
 用户可使用手机通过蓝牙与太乐一号连接。连接成功后，用户可使用太极创客团队开发的太乐一号专用手机应用控制太乐一号运行和切换功能模式。
 
-![太乐一号手机应用](https://gitee.com/taijichuangke/Tyler-1/blob/dev/Picture/cellphone-interface-caption.jpg "太乐一号手机应用")
+![太乐一号手机应用](https://images.gitee.com/uploads/images/2019/0904/203957_a4ac559d_1726672.jpeg "太乐一号手机应用")
 
 
 
