@@ -1,12 +1,17 @@
 /**********************************************************************
 项目名称/Project          : 太乐1号 / Tyler-1
 程序名称/Program name     : Tyler_1
-团队/Team                : 太极创客团队 / Taichi-Maker (www.taichi-maker.com)
-作者/Author              : CYNO 朔 
-日期/Date（YYYYMMDD）     : 20190719
+团队/Team                 : 太极创客团队 / Taichi-Maker (www.taichi-maker.com)
+作者/Author               : CYNO 朔 
+日期/Date（YYYYMMDD）     : 20190920
 程序目的/Purpose          : 
-本程序利用Tyler-1库文件控制太乐-1号智能小车。用户可使用手机应用控制小车的运行和工作模式。 
-本程序为带有舵机的太乐一号控制程序。  
+本程序为太乐一号库主控制程序。太乐一号库中有一系列示例程序（程序名以Check开头）。
+这些示例程序的作用是调试和测试太乐一号使用。在使用本程序前，请确保您已经完成了太乐
+一号的搭建和调试工作。
+
+如需获得更多的太乐一号资料，请参与太极创客网站太乐一号页：
+http://www.taichi-maker.com/homepage/arduino-tutorial-index/arduino-hardware/#taile1
+
 -----------------------------------------------------------------------
 修订历史/Revision History  
 日期/Date    作者/Author      参考号/Ref    修订说明/Revision Description
@@ -15,6 +20,8 @@
 20190831       CYNO朔            0.03       添加更多注释信息，让程序增加可读性
 20190831       CYNO朔            0.10       优化代码控制流程，简化串口输出，去掉
                                             控制debug信息的宏定义操作
+20190920       CYNO朔            0.11       去除turn_back功能 
+                                            整理程序格式并添加更丰富程序注释                                    
 -----------------------------------------------------------------------
 电路连接：
   Arduino AFMOTOR SERVO-2引脚（Arduino引脚9） 连接 HC06-TX
@@ -22,8 +29,9 @@
   Arduino A0引脚 连接 HCSR04的 trig 引脚
   Arduino A1引脚 连接 HCSR04的 echo 引脚
   Arduino 10引脚 连接 头部舵机 控制信号线
-其它说明：
-蓝牙应用控制用字符说明请见程序尾部
+其它说明（以下注释内容见本程序尾部）：
+ - 蓝牙应用控制用字符说明
+
 ***********************************************************************/
 #include <Tyler_1.h>
 #include <SoftwareSerial.h>
@@ -35,12 +43,11 @@
 
 #define TURN_LEFT_90   900        // 左转90度延迟参数
 #define TURN_RIGHT_90   1000      // 右转90度延迟参数
-#define TURN_BACK   1600          // 掉头延迟参数
 
 // 建立太乐1号对象。其中对象参数分别是：
 // (车轮电机1运转方向, 车轮电机2运转方向, 车轮电机3运转方向, 车轮电机4运转方向,
 // 车轮电机运转速度，测距传感器TRIG引脚， 测距传感器ECHO引脚，头部舵机信号引脚 )
-Tyler_1 tyler_1(1, 1, 1, 1, 200, A0, A1, 10); 
+Tyler_1 tyler_1(1, 0, 1, 0, 200, A0, A1, 10); 
                                                                                                
 // 建立SoftwareSerial对象，HC-06的TX接Arduino引脚9（AFMOTOR SERVO-2引脚）
 SoftwareSerial softSerial(9, 2);    
@@ -157,18 +164,15 @@ void manMode(){
 
 // 太乐1号自动控制函数
 void autoMode(){ 
-  if(cmdChar == '5'){       // 如果控制字符为'5'停止
-    tyler_1.stop();         // 太乐1号停止
-    tyler_1.setHeadPos(90); // 头部舵机恢复向前
-  } else {                  // 如果控制字符不是'5'停止
-    delay(50);              // 提高系统稳定性等待
-    int frontDist = tyler_1.getDistance(); // 检查前方距离
-    if(frontDist >= OK_DIST){          // 如果检测前方距离读数大于等于允许距离参数
-      tyler_1.forward();               // 太乐1号向前
-    } else {                           // 如果检测前方距离小于允许距离参数
-      tyler_1.stop();                  // 太乐1号停止   
-      autoTurn();                      // 检测左右侧距离并做出自动转向 
-    }
+    
+  int frontDist = tyler_1.getDistance(); // 检查前方距离
+  delay(50);              // 提高系统稳定性等待
+  
+  if(frontDist >= OK_DIST){          // 如果检测前方距离读数大于等于允许距离参数
+    tyler_1.forward();               // 太乐1号向前
+  } else {                           // 如果检测前方距离小于允许距离参数
+    tyler_1.stop();                  // 太乐1号停止   
+    autoTurn();                      // 检测左右侧距离并做出自动转向 
   }
 }
 
@@ -179,8 +183,8 @@ void autoTurn(){
   for (int pos = 90; pos >= 0; pos -= 1) {
     tyler_1.setHeadPos(pos);               
     delay(3);                     
-  }
-  delay(300);
+  }  
+  delay(300);              // 提高系统稳定性等待
   int rightDist =  tyler_1.getDistance();
   Serial.print("rightDist =  ");Serial.println(rightDist);
 
@@ -189,7 +193,7 @@ void autoTurn(){
     tyler_1.setHeadPos(pos);                
     delay(3);                     
   }
-  delay(300);
+  delay(300);              // 提高系统稳定性等待
   int leftDist =  tyler_1.getDistance();  
   Serial.print("leftDist =  ");Serial.println(leftDist);
 
@@ -198,14 +202,10 @@ void autoTurn(){
     tyler_1.setHeadPos(pos);               
     delay(3);                     
   }
-  delay(500);
+  delay(300);              // 提高系统稳定性等待
   
   //检查左右距离并做出转向决定
-  if ( rightDist < OK_DIST && leftDist < OK_DIST){  // 如果左右方向距离均小于允许距离
-    Serial.println("Turn 180");                    
-    turnBack();                                     // 掉头
-    return;
-  } else if ( rightDist >= leftDist){               // 如果右边距离大于左边距离
+  if ( rightDist >= leftDist){               // 如果右边距离大于左边距离
     Serial.println("Turn Right");                  
     turnR90();                                      // 右转90度
     return;
@@ -228,18 +228,10 @@ void turnR90(){
   delay(TURN_RIGHT_90);  
 }
 
-// 掉头
-void turnBack(){
-  tyler_1.turnL();
-  delay(TURN_BACK);  
-}
-
-
 // 通过串口输出运行模式信息
 void modeReport(){
-  if(cmdCharSave != cmdChar){
-    
-    cmdCharSave = cmdChar;
+  if(cmdCharSave != cmdChar){         // 如果控制指令缓存与新的控制指令不同
+    cmdCharSave = cmdChar;            // 更新控制指令缓存为新的控制指令
     
     if (systemMode == MAN){
       Serial.println("Tyler_1: MANUAL Mode");
@@ -249,8 +241,7 @@ void modeReport(){
     } else if (systemMode == GEST){
       Serial.println("Tyler_1: GEST Mode");
       opReport();           // 通过串口输出体感模式下的操作指令
-    } 
-     
+    }     
   }
 }
 
@@ -259,57 +250,39 @@ void opReport(){
   switch(cmdChar){   
 
     case '8': 
-
-        Serial.println("Tyler_1: FORWARD");
- 
+      Serial.println("Tyler_1: FORWARD");
       break;             
 
     case '2':
-
-        Serial.println("Tyler_1: BACKWARD");
- 
+      Serial.println("Tyler_1: BACKWARD");
       break;   
 
     case '4':
-
-        Serial.println("Tyler_1: TURN LEFT");
- 
+      Serial.println("Tyler_1: TURN LEFT");
       break;        
 
     case '6':
-
-        Serial.println("Tyler_1: TURN RIGHT");
- 
+      Serial.println("Tyler_1: TURN RIGHT");
       break;    
       
     case '5':
-
-        Serial.println("Tyler_1: STOP");
-   
+      Serial.println("Tyler_1: STOP");
       break;       
 
     case '7':
-
-        Serial.println("Tyler_1: FORWARD LEFT");
-   
+      Serial.println("Tyler_1: FORWARD LEFT");
       break;         
 
     case '9':
-
-        Serial.println("Tyler_1: FORWARD RIGHT");
-   
+      Serial.println("Tyler_1: FORWARD RIGHT");   
       break;      
 
     case '1':
-
-        Serial.println("Tyler_1: BACKWARD LEFT");
-   
+      Serial.println("Tyler_1: BACKWARD LEFT");
       break; 
 
     case '3':
-
-        Serial.println("Tyler_1: BACKWARD RIGHT");
-   
+      Serial.println("Tyler_1: BACKWARD RIGHT");
       break;   
   }
 }
@@ -318,9 +291,9 @@ void opReport(){
 控制指令字符
 
 模式控制
-AUTO  ---  自动避障模式
-MAN   ---  人工控制模式
-GEST  ---  体感控制模式
+A --- AUTO 自动避障模式
+M --- MAN  人工控制模式
+G --- GEST 体感控制模式
 
 运行控制
 8  ---  前进
