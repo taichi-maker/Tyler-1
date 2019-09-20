@@ -21,7 +21,8 @@ http://www.taichi-maker.com/homepage/arduino-tutorial-index/arduino-hardware/#ta
 20190831       CYNO朔            0.10       优化代码控制流程，简化串口输出，去掉
                                             控制debug信息的宏定义操作
 20190920       CYNO朔            0.11       去除turn_back功能 
-                                            整理程序格式并添加更丰富程序注释                                    
+                                            整理程序格式并添加更丰富程序注释   
+20190920       CYNO朔            0.12       仅软件串口                                                                        
 -----------------------------------------------------------------------
 电路连接：
   Arduino AFMOTOR SERVO-2引脚（Arduino引脚9） 连接 HC06-TX
@@ -53,38 +54,23 @@ Tyler_1 tyler_1(1, 0, 1, 0, 200, A0, A1, 10);
 SoftwareSerial softSerial(9, 2);    
 
 char cmdChar = '5';             // 存放串口控制指令字符
-char cmdCharSave = cmdChar;     // 串口控制指令缓存
 byte systemMode = MAN;          // 用于控制系统运行模式
                            
 void setup() {
 
   softSerial.begin(9600);     // 启动软件串口（用于接收手机控制指令信息）
-  delay(100);  
-
-  Serial.begin(9600);       // 启动硬件串口（用于输出系统调试信息和接收电脑控制指令）
-  delay(100);  
+  delay(100);   
   
   tyler_1.headServoIni();    //头部舵机初始化
   tyler_1.setHeadPos(90);    // 系统启动时将头部设置为90位置
     
-  Serial.println(F("***************************"));
-  Serial.println(F("Taichi Maker Tyler-1 Start!"));
-  Serial.println(F("***************************"));
 }
 
 void loop() {
 
   if(softSerial.available()){           // 如果软件串口收到信息
     cmdChar = softSerial.read();        // 将信息传递给cmdChar变量
-    Serial.print("cmdChar = ");        // 硬件串口输出cmdChar变量信息，
-    Serial.println(cmdChar);           // 以便于开发调试使用
   }   
-
-  if(Serial.available()){             // 如果硬件串口收到信息
-    cmdChar = Serial.read();          // 将信息传递给cmdChar变量
-    Serial.print("cmdChar = ");       // 硬件串口输出cmdChar变量信息，
-    Serial.println(cmdChar);          // 以便于开发调试使用
-  } 
 
   runMode();                           // 执行运行模式并实施相应控制
 }
@@ -114,8 +100,6 @@ void runMode(){
   } else if(systemMode == AUTO){    // 如果当前运行模式为自动
     autoMode();                     // 则使用自动控制函数控制太乐1号
   }     
-  
-  modeReport();       // 输出运行模式信息
 }
 
 // 太乐1号手动控制函数
@@ -186,7 +170,6 @@ void autoTurn(){
   }  
   delay(300);              // 提高系统稳定性等待
   int rightDist =  tyler_1.getDistance();
-  Serial.print("rightDist =  ");Serial.println(rightDist);
 
   // 检查左侧距离     
   for (int pos = 0; pos <= 180; pos += 1) {
@@ -195,7 +178,6 @@ void autoTurn(){
   }
   delay(300);              // 提高系统稳定性等待
   int leftDist =  tyler_1.getDistance();  
-  Serial.print("leftDist =  ");Serial.println(leftDist);
 
   //将头部调整到正前方
   for (int pos = 180; pos >= 90; pos -= 1) {
@@ -205,12 +187,10 @@ void autoTurn(){
   delay(300);              // 提高系统稳定性等待
   
   //检查左右距离并做出转向决定
-  if ( rightDist >= leftDist){               // 如果右边距离大于左边距离
-    Serial.println("Turn Right");                  
+  if ( rightDist >= leftDist){               // 如果右边距离大于左边距离              
     turnR90();                                      // 右转90度
     return;
-  } else {                                         // 如果左边距离大于右边距离
-    Serial.println("Turn Left");                  
+  } else {                                         // 如果左边距离大于右边距离              
     turnL90();                                     // 左转90度
     return;
   }
@@ -226,65 +206,6 @@ void turnL90(){
 void turnR90(){
   tyler_1.turnR();
   delay(TURN_RIGHT_90);  
-}
-
-// 通过串口输出运行模式信息
-void modeReport(){
-  if(cmdCharSave != cmdChar){         // 如果控制指令缓存与新的控制指令不同
-    cmdCharSave = cmdChar;            // 更新控制指令缓存为新的控制指令
-    
-    if (systemMode == MAN){
-      Serial.println("Tyler_1: MANUAL Mode");
-      opReport();           // 通过串口输出手动模式下的操作指令
-    } else if (systemMode == AUTO){
-      Serial.println("Tyler_1: AUTO Mode");
-    } else if (systemMode == GEST){
-      Serial.println("Tyler_1: GEST Mode");
-      opReport();           // 通过串口输出体感模式下的操作指令
-    }     
-  }
-}
-
-// 通过串口输出当前操作信息
-void opReport(){
-  switch(cmdChar){   
-
-    case '8': 
-      Serial.println("Tyler_1: FORWARD");
-      break;             
-
-    case '2':
-      Serial.println("Tyler_1: BACKWARD");
-      break;   
-
-    case '4':
-      Serial.println("Tyler_1: TURN LEFT");
-      break;        
-
-    case '6':
-      Serial.println("Tyler_1: TURN RIGHT");
-      break;    
-      
-    case '5':
-      Serial.println("Tyler_1: STOP");
-      break;       
-
-    case '7':
-      Serial.println("Tyler_1: FORWARD LEFT");
-      break;         
-
-    case '9':
-      Serial.println("Tyler_1: FORWARD RIGHT");   
-      break;      
-
-    case '1':
-      Serial.println("Tyler_1: BACKWARD LEFT");
-      break; 
-
-    case '3':
-      Serial.println("Tyler_1: BACKWARD RIGHT");
-      break;   
-  }
 }
 
 /*
