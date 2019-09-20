@@ -8,7 +8,7 @@
 # 数据类型/Datatypes (KEYWORD1)
 #######################################
 
-Tyler-1			KEYWORD1
+Tyler_1			KEYWORD1
 
 #######################################
 # 函数/Functions (KEYWORD2)
