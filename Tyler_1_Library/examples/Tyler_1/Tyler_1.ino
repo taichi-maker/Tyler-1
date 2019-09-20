@@ -168,16 +168,16 @@ void autoTurn(){
     tyler_1.setHeadPos(pos);               
     delay(3);                     
   }  
-  delay(300);              // 提高系统稳定性等待
   int rightDist =  tyler_1.getDistance();
+  delay(300);              // 提高系统稳定性等待
 
   // 检查左侧距离     
   for (int pos = 0; pos <= 180; pos += 1) {
     tyler_1.setHeadPos(pos);                
     delay(3);                     
   }
-  delay(300);              // 提高系统稳定性等待
   int leftDist =  tyler_1.getDistance();  
+  delay(300);              // 提高系统稳定性等待  
 
   //将头部调整到正前方
   for (int pos = 180; pos >= 90; pos -= 1) {
