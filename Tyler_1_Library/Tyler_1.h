@@ -35,16 +35,7 @@ https://www.bilibili.com/video/av66919153/
 // 太乐1号类
 class Tyler_1{
   public:
-    // 只提供车轮电机方向设置参数的构造函数
-    Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4);
-	
-	// 提供车轮电机方向设置参数，车轮电机速度参数的构造函数
-	Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4, byte motorSpeed);
-	
-	// 提供车轮电机方向设置参数，车轮电机速度参数， 测距传感器引脚参数的构造函数
-    Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4, byte motorSpeed, int trigPin, int echoPin);
-	
-	// 提供车轮电机方向设置参数，车轮电机速度参数， 测距传感器引脚参数以及舵机控制引脚参数的构造函数
+	// 车轮电机方向设置参数，车轮电机速度参数， 测距传感器引脚参数以及舵机控制引脚参数的构造函数
     Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4, byte motorSpeed, int trigPin, int echoPin, int servoPin);
     
     void forward();				// 前进

@@ -24,49 +24,8 @@ https://www.bilibili.com/video/av66919153/
 
 ***********************************************************************/
 #include <AFMotor.h>
-#include "Tyler_1.h"
+#include <Tyler_1.h>
 
-// 只提供车轮电机方向设置参数的构造函数
-Tyler_1::Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4){
-
-  dcMotor1->setSpeed(DEFAULT_SPEED);
-  dcMotor2->setSpeed(DEFAULT_SPEED);
-  dcMotor3->setSpeed(DEFAULT_SPEED);
-  dcMotor4->setSpeed(DEFAULT_SPEED);
-
-  dcMotorIni( dir1,  dir2,  dir3,  dir4);
-}
-
-// 提供车轮电机方向设置参数，车轮电机速度参数的构造函数
-Tyler_1::Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4, byte motorSpeed){
-
-  dcMotor1->setSpeed(motorSpeed);
-  dcMotor2->setSpeed(motorSpeed);
-  dcMotor3->setSpeed(motorSpeed);
-  dcMotor4->setSpeed(motorSpeed);
-
-  dcMotorIni( dir1,  dir2,  dir3,  dir4);
-  
-  
-}
-
-// 提供车轮电机方向设置参数，车轮电机速度参数， 测距传感器引脚参数的构造函数
-Tyler_1::Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4, byte motorSpeed, int trigPin, int echoPin){
-  
-  hcTrig = trigPin;
-  hcEcho = echoPin;
- 
-  dcMotor1->setSpeed(motorSpeed);
-  dcMotor2->setSpeed(motorSpeed);
-  dcMotor3->setSpeed(motorSpeed);
-  dcMotor4->setSpeed(motorSpeed);
-
-  dcMotorIni( dir1,  dir2,  dir3,  dir4);
-
-
-  pinMode(hcTrig, OUTPUT);
-  pinMode(hcEcho, INPUT);  
-}
 
 // 提供车轮电机方向设置参数，车轮电机速度参数， 测距传感器引脚参数以及舵机控制引脚参数的构造函数
 Tyler_1::Tyler_1(bool dir1, bool dir2, bool dir3, bool dir4, byte motorSpeed, int trigPin, int echoPin, int servoPin){
