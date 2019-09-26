@@ -6,7 +6,7 @@
 
 太乐一号是由太极创客团队开发的基于Arduino与乐高积木的创客智能模型车。该智能模型车旨在帮助创客朋友们学习熟悉Arduino编程，尤其是通过面向对象的方式开发Arduino。
 
-# 以下链接是太乐一号的视频介绍。
+# 以下链接是太乐一号在B站的完整视频介绍和免费视频教程。
 
 https://www.bilibili.com/video/av66919153/
 
@@ -25,7 +25,7 @@ https://gitee.com/taijichuangke/Tyler-1/wikis/%E5%A4%AA%E4%B9%901%E5%8F%B7%20Tyl
 
 关于太乐一号的编程，请您放心，我们已经为您做好了丰富的库文件。您只需要具备基本的Arduino编程知识既可使用和开发太乐一号。
 
-假如您还不知道什么是Arduino或者对Arduino编程不熟悉，不用担心。太极创客团队编制的完全免费开源教程视频教程《零基础入门学用Arduino》帮助很多朋友入门学会使用和开发Arduino。《零基础入门学用Arduino》链接：http://www.taichi-maker.com/homepage/arduino-basic-tutorial-index/
+假如您还不知道什么是Arduino或者对Arduino编程不熟悉，不用担心。太极创客团队编制的完全免费开源视频教程《零基础入门学用Arduino》帮助很多朋友入门学会使用和开发Arduino。《零基础入门学用Arduino》链接：http://www.taichi-maker.com/homepage/arduino-basic-tutorial-index/
 
 您只需要掌握了以上链接中的基础知识篇学习就可以开始制作开发太乐一号。
 
