@@ -58,8 +58,6 @@ https://gitee.com/taijichuangke/Tyler-1/wikis/%E5%A4%AA%E4%B9%901%E5%8F%B7%20Tyl
 
 太乐一号仅仅是我们团队所开发的诸多免费开源项目中的一个。我们坚持免费开源是为了让更多的朋友可以体会开源项目和开源协作的魅力，让太乐一号以及我们开发的项目更富活力。假如您喜欢我们的项目，请为太乐一号打上一颗小星星，或者把我们推荐给更多热爱科技的朋友们。谢谢！您的鼓励是我们前进最大的动力！
 
-期待着在这里与您相遇，让我们携手为中国人的开源社区贡献一点力量。
-
 太极创客哔哩哔哩主页：https://space.bilibili.com/103589285
 
 太极创客YouTube：https://www.youtube.com/channel/UC8EkxMr5gGnrb9adVgR-UJw
