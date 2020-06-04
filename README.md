@@ -49,6 +49,9 @@ https://gitee.com/taijichuangke/Tyler-1/wikis/%E5%A4%AA%E4%B9%901%E5%8F%B7%20Tyl
 
 关于太极创客
 --------
+太极创客团队信息
+--------
+
 太极创客官网地址：http://www.taichi-maker.com/
 
 太极创客团队为广大创客朋友们制作了丰富的免费创客教程和学习资料。
@@ -60,9 +63,17 @@ https://gitee.com/taijichuangke/Tyler-1/wikis/%E5%A4%AA%E4%B9%901%E5%8F%B7%20Tyl
 
 期待着在这里与您相遇，让我们携手为中国人的开源社区贡献一点力量。
 
+太极创客哔哩哔哩主页：https://space.bilibili.com/103589285
+
+太极创客YouTube：https://www.youtube.com/channel/UC8EkxMr5gGnrb9adVgR-UJw
+
+太极创客GitHub：https://github.com/orgs/taichi-maker/teams/team
+
+太极创客码云：https://gitee.com/taijichuangke
+
 太乐一号项目开发人员
 --------
-CYNO朔	https://gitee.com/taichimaker
+CYNO朔	https://github.com/Cyno-Shuo
 Dapenson   https://gitee.com/x223222981
 
 
